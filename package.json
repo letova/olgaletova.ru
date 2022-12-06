@@ -1,0 +1,33 @@
+{
+  "name": "olgaletova.ru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/letova/olgaletova.ru.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/letova/olgaletova.ru/issues"
+  },
+  "homepage": "https://github.com/letova/olgaletova.ru#readme",
+  "dependencies": {
+    "next": "^13.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.11",
+    "@types/react": "18.0.26",
+    "typescript": "4.9.3"
+  }
+}
