@@ -1,0 +1,34 @@
+.container {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.navigationList {
+  display: flex;
+  padding: 0 32px;
+}
+
+.navigationListItem {
+  padding: 0 16px;
+
+  a {
+    color: dimgray;
+  }
+}
+
+.navigationListItem--active {
+  a {
+    color: black;
+  }
+}
