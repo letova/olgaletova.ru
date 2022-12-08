@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 
 import Layout from '../components/layout';
 
@@ -18,6 +19,7 @@ const Blog = ({ articles }) => {
             <h2>{title}</h2>
             <p>{description}</p>
             <span>{date}</span>
+            <Link href={`/blog/${id}`}>Читать</Link>
           </div>
         ))}
       </div>

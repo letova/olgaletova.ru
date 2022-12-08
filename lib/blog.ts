@@ -10,12 +10,12 @@ const readFile = (name: string) => {
   return fs.readFileSync(filePath, 'utf8');
 };
 
-export const getBlogArticle = (slug: string) => {
-  const fileContent = readFile(`${slug}.md`);
+export const getBlogArticle = (id: string) => {
+  const fileContent = readFile(`${id}.md`);
   const { data: metadata } = matter(fileContent);
 
   return {
-    slug,
+    id,
     ...metadata,
   };
 };
@@ -41,5 +41,17 @@ export const getBlogArticles = () => {
     } else {
       return 0;
     }
+  });
+};
+
+export const getArticleIds = () => {
+  const fileNames = fs.readdirSync(blogPath);
+
+  return fileNames.map((fileName) => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, ''),
+      },
+    };
   });
 };

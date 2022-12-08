@@ -1,1 +1,1 @@
-export { getBlogArticle, getBlogArticles } from './blog';
+export { getBlogArticle, getArticleIds, getBlogArticles } from './blog';
