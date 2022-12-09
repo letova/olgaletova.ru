@@ -1,6 +1,6 @@
 ---
 title: 'Fake article - One'
-date: '2022-12-08'
+date: '2022-12-08T20:00:00.00Z'
 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
 aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat'
 ---

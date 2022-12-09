@@ -1,5 +1,7 @@
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
+import { formatDate } from '../utils';
+
 import styles from './article.module.scss';
 
 const Article = ({ article }) => {
@@ -8,7 +10,7 @@ const Article = ({ article }) => {
   return (
     <article className={styles.container}>
       <h1>{title}</h1>
-      <span>{date}</span>
+      <span className={styles.date}>{formatDate(date)}</span>
       <div className={styles.contentContainer} dangerouslySetInnerHTML={{ __html: content }} />
     </article>
   );

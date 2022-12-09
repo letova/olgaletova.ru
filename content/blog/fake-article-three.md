@@ -1,6 +1,6 @@
 ---
 title: 'Fake article - Three'
-date: '2022-12-08'
+date: '2022-12-08T20:00:00.00Z'
 description:
   'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
 ---

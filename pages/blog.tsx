@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import Layout from '../components/layout';
 
+import { formatDate } from '../utils';
 import { getBlogArticles } from '../lib';
 
 import styles from '../styles/blog.module.scss';
@@ -18,7 +19,7 @@ const BlogPage = ({ articles }) => {
           <div key={id} className={styles.card}>
             <h2>{title}</h2>
             <p>{description}</p>
-            <span>{date}</span>
+            <span>{formatDate(date)}</span>
             <Link href={`/blog/${id}`}>Читать</Link>
           </div>
         ))}
