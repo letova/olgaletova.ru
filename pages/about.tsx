@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import Layout from '../components/layout';
 
-const About = () => {
+const AboutPage = () => {
   return (
     <Layout>
       <Head>
@@ -13,4 +13,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutPage;

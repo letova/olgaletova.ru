@@ -2,6 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+import { remark } from 'remark';
+import remarkHtml from 'remark-html';
+import remarkPrism from 'remark-prism';
+
 const blogPath = path.join(process.cwd(), 'content', 'blog');
 
 const readFile = (name: string) => {
@@ -10,12 +14,18 @@ const readFile = (name: string) => {
   return fs.readFileSync(filePath, 'utf8');
 };
 
-export const getBlogArticle = (id: string) => {
+export const getBlogArticle = async (id: string) => {
   const fileContent = readFile(`${id}.md`);
-  const { data: metadata } = matter(fileContent);
+  const { data: metadata, content } = matter(fileContent);
+
+  const processedContent = await remark()
+    .use(remarkPrism, { plugins: ['line-numbers'] })
+    .use(remarkHtml, { sanitize: false })
+    .process(content);
 
   return {
     id,
+    content: processedContent.toString(),
     ...metadata,
   };
 };

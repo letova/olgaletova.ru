@@ -15,19 +15,21 @@ const Header = () => {
 
   return (
     <header className={styles.container}>
-      <nav className={styles.navigation}>
-        <Link href="/">
-          <span className={styles.logo}>Olga Letova</span>
-        </Link>
-        <ul className={styles.navigationList}>
-          <li className={getListItemClassName('/blog')}>
-            <Link href="/blog">Блог</Link>
-          </li>
-          <li className={getListItemClassName('/about')}>
-            <Link href="/about">Об авторе</Link>
-          </li>
-        </ul>
-      </nav>
+      <div className={styles.wrapper}>
+        <nav className={styles.navigation}>
+          <Link href="/">
+            <span className={styles.logo}>Olga Letova</span>
+          </Link>
+          <ul className={styles.navigationList}>
+            <li className={getListItemClassName('/blog')}>
+              <Link href="/blog">Блог</Link>
+            </li>
+            <li className={getListItemClassName('/about')}>
+              <Link href="/about">Об авторе</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };

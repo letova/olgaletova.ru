@@ -1,15 +1,12 @@
+import Article from '../../components/article';
 import Layout from '../../components/layout';
 
 import { getArticleIds, getBlogArticle } from '../../lib';
 
-const Article = ({ article }) => {
+const ArticlePage = ({ article }) => {
   return (
     <Layout>
-      {article.title}
-      <br />
-      {article.id}
-      <br />
-      {article.date}
+      <Article article={article} />
     </Layout>
   );
 };
@@ -24,7 +21,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const article = getBlogArticle(params.id);
+  const article = await getBlogArticle(params.id);
 
   return {
     props: {
@@ -33,4 +30,4 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default Article;
+export default ArticlePage;

@@ -7,7 +7,7 @@ import { getBlogArticles } from '../lib';
 
 import styles from '../styles/blog.module.scss';
 
-const Blog = ({ articles }) => {
+const BlogPage = ({ articles }) => {
   return (
     <Layout>
       <Head>
@@ -37,4 +37,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Blog;
+export default BlogPage;

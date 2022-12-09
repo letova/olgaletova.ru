@@ -20,7 +20,7 @@ description: 'Одной из самых важных концепций, кот
 Рассмотрим пример, компонент с картой и маркерами на ней. При клике на маркер нам нужно открывать или закрывать тултип,
 ориентируясь на значение `isOpen`:
 
-```tsx
+```js[class="line-numbers"]
 const CustomMarker = (props) => {
   const markerRef = useRef();
   const [isOpen, setOpen] = useState(false);
