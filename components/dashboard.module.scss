@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+
+  .articlePreview {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .categories {
+    width: 300px;
+  }
+}
+
+.articlePreview {
+}
+
+.categories {
+  .tag:not(:last-child) {
+    margin-right: 4px;
+  }
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 4px;
+  background: #e5e3e3;
+  border-radius: 3px;
+  cursor: pointer;
+}
