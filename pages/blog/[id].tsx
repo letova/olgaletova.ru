@@ -1,7 +1,7 @@
 import Article from '../../components/article';
 import Layout from '../../components/layout';
 
-import { getArticleIds, getBlogArticle } from '../../lib';
+import { getArticleIds, getBlogArticle } from '../../server';
 
 const ArticlePage = ({ article }) => {
   return (

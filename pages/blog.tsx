@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Layout from '../components/layout';
 
 import { formatDate } from '../utils';
-import { getBlogArticles } from '../lib';
+import { getBlogArticles } from '../server';
 
 import styles from '../styles/blog.module.scss';
 
