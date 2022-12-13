@@ -11,7 +11,7 @@ interface HomePageProps {
 }
 
 const HomePage = ({ articles }: HomePageProps) => {
-  const [lastArticle] = articles || [];
+  const lastArticles = (articles || []).slice(0, 3);
 
   const tags: string[] = articles.reduce((result, { tag }) => {
     return tag ? [...result, tag] : result;
@@ -24,7 +24,7 @@ const HomePage = ({ articles }: HomePageProps) => {
       <Head>
         <title>Olga Letova</title>
       </Head>
-      <Dashboard article={lastArticle} tags={uniqTags} />
+      <Dashboard articles={lastArticles} tags={uniqTags} />
     </Layout>
   );
 };
