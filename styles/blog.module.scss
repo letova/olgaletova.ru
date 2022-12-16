@@ -18,3 +18,24 @@
     letter-spacing: 0.6px;
   }
 }
+
+.tagsContainer {
+  grid-column: 1/-1;
+
+  .tag:not(:last-child) {
+    margin-right: 4px;
+  }
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 4px;
+  background: #e5e3e3;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.tag--active {
+  color: #e5e3e3;
+  background: #9932cc;
+}

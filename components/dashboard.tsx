@@ -21,7 +21,7 @@ const Dashboard = ({ articles, tags = [] }: DashboardProps) => {
               const { id, title, description, date } = article;
 
               return (
-                <div className={styles.articlePreview}>
+                <div key={id} className={styles.articlePreview}>
                   <h3 className={styles.title}>
                     <Link href={`/blog/${id}`}>{title}</Link>
                   </h3>
@@ -48,7 +48,11 @@ const Dashboard = ({ articles, tags = [] }: DashboardProps) => {
         <h2>Категории</h2>
         {tags.length
           ? tags.map((tag) => {
-              return <span className={styles.tag}>{tag}</span>;
+              return (
+                <Link key={tag} className={styles.tag} href={`/blog?tag=${tag}`}>
+                  {tag}
+                </Link>
+              );
             })
           : 'Пока нет категорий'}
       </div>

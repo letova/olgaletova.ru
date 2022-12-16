@@ -4,6 +4,7 @@ import Layout from '../components/layout';
 import Dashboard from '../components/dashboard';
 
 import { Article } from '../types';
+import { getUniqTags } from '../utils';
 import { getBlogArticles } from '../server';
 
 interface HomePageProps {
@@ -13,11 +14,7 @@ interface HomePageProps {
 const HomePage = ({ articles }: HomePageProps) => {
   const lastArticles = (articles || []).slice(0, 3);
 
-  const tags: string[] = articles.reduce((result, { tag }) => {
-    return tag ? [...result, tag] : result;
-  }, []);
-
-  const uniqTags = tags.length ? Array.from(new Set(tags)) : [];
+  const uniqTags = getUniqTags(articles);
 
   return (
     <Layout>
