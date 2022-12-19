@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Layout from '../components/layout';
@@ -14,6 +15,8 @@ const BlogPage = ({ articles }) => {
   const router = useRouter();
   const { query } = router;
 
+  const [searchValue, setSearchValue] = useState('');
+
   const tags = getUniqTags(articles);
 
   return (
@@ -22,14 +25,19 @@ const BlogPage = ({ articles }) => {
         <title>Blog</title>
       </Head>
       <div className={styles.cardsContainer}>
+        <div className={styles.searchContainer}>
+          <input className={styles.search} placeholder={'Найти статьи'} />
+        </div>
         <div className={styles.tagsContainer}>
           {tags.length
             ? tags.map((tag) => {
+                const isActive = tag === query.tag;
+
                 return (
                   <Link
                     key={tag}
-                    className={clsx(styles.tag, { [styles['tag--active']]: tag === query.tag })}
-                    href={`/blog?tag=${tag}`}
+                    className={clsx(styles.tag, { [styles['tag--active']]: isActive })}
+                    href={isActive ? '/blog' : `/blog?tag=${tag}`}
                   >
                     {tag}
                   </Link>

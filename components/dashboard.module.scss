@@ -5,7 +5,7 @@
   padding: 0 0 32px 0;
 
   h2 {
-    margin: 0 0 48px;
+    margin: 0 0 42px;
   }
 
   .articlePreview:not(:last-child) {
@@ -59,15 +59,26 @@
 }
 
 .categories {
+  .tag {
+    margin-bottom: 6px;
+  }
+
   .tag:not(:last-child) {
-    margin-right: 4px;
+    margin-right: 6px;
   }
 }
 
 .tag {
   display: inline-block;
-  padding: 2px 4px;
-  background: #e5e3e3;
-  border-radius: 3px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: black;
+  background-color: #e5e3e3;
   cursor: pointer;
+}
+
+.tag:hover {
+  transform: scale(1.05);
+  transition: all 375ms ease 0s;
+  background-color: #d1cfcf;
 }
