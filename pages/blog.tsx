@@ -15,9 +15,17 @@ const BlogPage = ({ articles }) => {
   const router = useRouter();
   const { query } = router;
 
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(query.tag || '');
 
   const tags = getUniqTags(articles);
+
+  let filteredArticles = articles;
+
+  if (query.tag) {
+    filteredArticles = articles.filter(({ tag }) => {
+      return tag === query.tag;
+    });
+  }
 
   return (
     <Layout>
@@ -26,7 +34,12 @@ const BlogPage = ({ articles }) => {
       </Head>
       <div className={styles.cardsContainer}>
         <div className={styles.searchContainer}>
-          <input className={styles.search} placeholder={'Найти статьи'} />
+          <input
+            className={styles.search}
+            placeholder={'Найти статьи'}
+            value={searchValue}
+            onChange={(event) => setSearchValue(event.target.value)}
+          />
         </div>
         <div className={styles.tagsContainer}>
           {tags.length
@@ -45,7 +58,7 @@ const BlogPage = ({ articles }) => {
               })
             : 'Пока нет категорий'}
         </div>
-        {articles?.map(({ id, date, title, description }) => (
+        {filteredArticles?.map(({ id, date, title, description }) => (
           <div key={id} className={styles.card}>
             <h2>{title}</h2>
             <p>{description}</p>
