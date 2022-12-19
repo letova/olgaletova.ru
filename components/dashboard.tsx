@@ -22,29 +22,29 @@ const Dashboard = ({ articles, tags = [] }: DashboardProps) => {
 
               return (
                 <div key={id} className={styles.articlePreview}>
-                  <h3 className={styles.title}>
-                    <Link href={`/blog/${id}`}>{title}</Link>
-                  </h3>
-                  <span className={styles.subtitle}>{formatDate(date)}</span>
-                  <p>{description}</p>
-                  <Link href={`/blog/${id}`}>Читать</Link>
-                  <svg
-                    className={styles.arrow}
-                    focusable="false"
-                    aria-hidden="true"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
-                  </svg>
+                  <Link href={`/blog/${id}`}>
+                    <h3 className={styles.title}>{title}</h3>
+                    <span className={styles.subtitle}>{formatDate(date)}</span>
+                    <p>{description}</p>
+                    <span>Читать</span>
+                    <svg
+                      className={styles.arrow}
+                      focusable="false"
+                      aria-hidden="true"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                    </svg>
+                  </Link>
                 </div>
               );
             })
           : 'Что-то пошло не так'}
       </div>
-      <div className={styles.categories}>
+      <div className={styles.tagsContainer}>
         <h2>Категории</h2>
         {tags.length
           ? tags.map((tag) => {
