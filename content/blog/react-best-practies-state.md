@@ -312,3 +312,106 @@ const Checkbox = (props) => {
 ```
 
 Но такой подход нельзя порекомендовать как лучший, ввиду возрастающей сложности компонента.
+
+## Определяйте правильно объект состояния
+
+Обычно, в состоянии всегда должна храниться сущность, которая является причиной изменения компонента, а все зависимости
+переопределяются исходя из изменений этой сущности.
+
+Рассмотрим, как пример, создание кастомного компонента `Select`. Предположим наш компонент имеет сложный дизайн и нам
+нужно окрашивать рамку у контейнера, когда возникает событие `onfocus` у инпута.
+
+```js
+const NORMAL_BORDER_STYLE = { borderColor: 'gray' };
+const FOCUS_BORDER_STYLE = { borderColor: 'darkGray' };
+
+const Select = (props) => {
+  const [containerStyle, setContainerStyle] = useState(NORMAL_BORDER_STYLE);
+
+  const handleFocus = () => {
+    setContainerStyle(FOCUS_BORDER_STYLE);
+  };
+
+  const handleBlur = () => {
+    setContainerStyle(NORMAL_BORDER_STYLE);
+  };
+
+  return (
+    <div className="input-container" style={containerStyle}>
+      <div className="input" tabIndex={0} onFocus={handleFocus} onBlur={handleBlur} {...props}>
+        {value}
+      </div>
+    </div>
+  );
+};
+```
+
+Сейчас мы добавили стили в стейт и меняем их при получени/снятии фокуса. Следующая задача - это добавление иконки,
+появление которой также зависит от фокуса.
+
+```js
+const Select = (props) => {
+  const [containerStyle, setContainerStyle] = useState(NORMAL_BORDER_STYLE);
+  const [showIcon, setShowIcon] = useState(false);
+
+  const handleFocus = () => {
+    setStyle(FOCUS_BORDER_STYLE);
+    setShowIcon(true);
+  };
+
+  const handleBlur = () => {
+    setStyle(NORMAL_BORDER_STYLE);
+    setShowIcon(false);
+  };
+
+  return (
+    <div className="input-container" style={style}>
+      {showIcon && <Icon />}
+      <div {...}>{value}</div>
+    </div>
+  );
+};
+```
+
+На этом этапе становится очевидно, что при добавлении новых зависимостей, каждый раз нужно будет добавлять и новый
+стейт. Чтобы избежать такого сценария, необходимо хранить в стейте само состояние фокуса - причину всех изменений.
+
+```js
+const Select = (props) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
+  return (
+    <div
+      className="input-container"
+      style={isFocused ? FOCUS_BORDER_STYLE : NORMAL_BORDER_STYLE}
+    >
+      {isFocused && <Icon />}
+      <div {...}>{value}</div>
+    </div>
+  );
+};
+```
+
+## Заключение
+
+Суть этих правил состоит в том, что всякий раз, когда мы хотим сохранить что-то в состоянии, мы должны прежде всего
+задать себе вопросы:
+
+- не можем ли мы обойтись без него? Сделать глупый `stateless` компонент и предоставлять все управление
+  компонентам-пользователям, вычислять необходимые значения на ходу или пойти каким-то альтернативным путем, чтобы
+  решить поставленную задачу?
+
+- один ли у нас источник "правды" для отрисовки компонента?
+
+- правильные ли мы вещи храним в состоянии?
+
+Ведь очень часто, что за плохие решения мы расплачиваемя снижением производительности и переусложнением кода - вещами
+немаловажными при разработки программ.
