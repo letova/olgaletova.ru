@@ -50,6 +50,18 @@
     background-color: #f5f5f5;
   }
 
+  pre[class*='language-jsx']::before {
+    content: 'jsx';
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  pre[class*='language-'].line-numbers {
+    padding-left: 3.6em;
+  }
+
   :global {
     .token.function {
       color: #4169e1;

@@ -26,7 +26,7 @@ description: 'Одной из самых важных концепций, кот
 Рассмотрим пример, компонент с картой и маркерами на ней. При клике на маркер
 нам нужно открывать или закрывать тултип, ориентируясь на значение `isOpen`:
 
-```js[class="line-numbers"]
+```jsx[class="line-numbers"]
 const CustomMarker = (props) => {
   const markerRef = useRef();
   const [isOpen, setOpen] = useState(false);
@@ -58,7 +58,7 @@ const SomeComponent = (props) => {
 вместо `useState`, мы можем сохранить переменную в `useRef`, избежав тем самым
 бесполезные повторные рендеры при клике:
 
-```jsx
+```jsx[class="line-numbers"]
 const CustomMarker = (props) => {
   const markerRef = useRef();
   const isOpenRef = useRef(false);
@@ -81,7 +81,7 @@ const CustomMarker = (props) => {
 предварительно извлекаем и фильтруем данные, полученные с бека. `useQuery` при
 этом сохраняет результат запроса между ререндерами компонента:
 
-```jsx
+```jsx[class="line-numbers"]
 const [films, setFilms] = useState([]);
 const { data } = useQuery(QUERY_OPTIONS);
 
@@ -101,7 +101,7 @@ return <FilmList>{ films.map(...) }</FilmList>;
 [ссылочное равенство](https://learn.javascript.ru/object-copy#sravnenie-po-ssylke),
 можно воспользоваться хуком `useMemo`:
 
-```jsx
+```jsx[class="line-numbers"]
 const { data } = useQuery(QUERY_OPTIONS);
 
 // const books = (data || []).filter(…).map(…);
@@ -122,7 +122,7 @@ return <BooksList>{ books.map(...) }</BooksList>;
 определенном этапе прокрутки таблицы, должна выводиться кнопка "Вернуться в
 начало":
 
-```jsx
+```jsx[class="line-numbers"]
 const [showButtonUp, setShowButtonUp] = useState(false);
 
 const handleScroll = (event) => {
@@ -154,7 +154,7 @@ return (
 зависимостей для `rows` такой подход уже может оказаться не самым верным. В
 данном случае, есть **альтернативный способ** решения нашей задачи:
 
-```jsx
+```jsx[class="line-numbers"]
 const buttonUpRef = useRef(null);
 
 const handleScroll = (event) => {
@@ -185,7 +185,7 @@ return (
 переменных состояния. Предположим, что мы делаем страничку автора со списком
 книг. Можно выбрать одну и увидеть подробное описание книги:
 
-```jsx
+```jsx[class="line-numbers"]
 const WriterCard = (props) => {
   const { data: books = [] } = useQuery(QUERY_OPTIONS);
   const [selectedBook, setSelectedBook] = useState();
@@ -215,7 +215,7 @@ const WriterCard = (props) => {
 дублирование. В приведенном ниже примере, вместо объекта книги, мы сохраняем
 `selectedId`, а затем получаем выбранную книгу путем поиска среди списка книг:
 
-```jsx
+```jsx[class="line-numbers"]
 const WriterCard = (props) => {
   const { data: books = [] } = useQuery(SOME_QUERY);
   const [selectedId, setSelectedId] = useState();
@@ -241,7 +241,7 @@ const WriterCard = (props) => {
 Другой пример, это компонент `Checkbox`, который управляет своим состоянием
 `isChecked`:
 
-```jsx
+```jsx[class="line-numbers"]
 const Checkbox = (props) => {
   const [isChecked, setIsChecked] = useState(props.isChecked);
 
@@ -259,7 +259,7 @@ const Checkbox = (props) => {
 фильтрации, и кнопку "Сбросить фильтры". Добавим в начальное состояние жанр
 `rock`:
 
-```jsx
+```jsx[class="line-numbers"]
 const Filter = (props) => {
   const [genres, setGenres] = useState(new Set(['rock']));
 
@@ -287,7 +287,7 @@ const Filter = (props) => {
 определено и повлиять на него из вне мы не можем. Чтобы иметь возможность задать
 чекбоксу актуальное состояние, нам приедется добавить в компонент `useEffect`:
 
-```jsx
+```jsx[class="line-numbers"]
 const Checkbox = (props) => {
   const [isChecked, setIsChecked] = useState(props.isChecked);
 
@@ -302,7 +302,7 @@ const Checkbox = (props) => {
 избавиться от состояния в компоненте `Checkbox` и передавать состояние
 `isChecked` напрямую через `props`:
 
-```jsx
+```jsx[class="line-numbers"]
 const Checkbox = (props) => {
   const handleChange = () => {
     props.onChange?.(!props.isChecked);
@@ -317,7 +317,7 @@ const Checkbox = (props) => {
 А если нам все же нужно поддерживать внутреннее состояние, для простоты
 использования в ряде случаев, то можно сделать следующее:
 
-```tsx
+```jsx[class="line-numbers"]
 const Checkbox = (props) => {
   const [isChecked, setIsChecked] = useState(props.isChecked);
 
@@ -350,7 +350,7 @@ const Checkbox = (props) => {
 компонент имеет сложный дизайн и нам нужно окрашивать рамку у контейнера, когда
 возникает событие `onfocus` у инпута.
 
-```tsx
+```jsx[class="line-numbers"]
 const NORMAL_BORDER_STYLE = { borderColor: 'gray' };
 const FOCUS_BORDER_STYLE = { borderColor: 'darkGray' };
 
@@ -385,7 +385,7 @@ const Select = (props) => {
 Следующая задача - это добавление иконки, появление которой также зависит от
 фокуса.
 
-```js
+```jsx[class="line-numbers"]
 const Select = (props) => {
   const [containerStyle, setContainerStyle] = useState(NORMAL_BORDER_STYLE);
   const [showIcon, setShowIcon] = useState(false);
@@ -413,7 +413,7 @@ const Select = (props) => {
 раз нужно будет добавлять и новый стейт. Чтобы избежать такого сценария,
 необходимо хранить в стейте само состояние фокуса - причину всех изменений.
 
-```js
+```jsx[class="line-numbers"]
 const Select = (props) => {
   const [isFocused, setIsFocused] = useState(false);
 
