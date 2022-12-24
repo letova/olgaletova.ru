@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
 import { Article } from '../types';
-import { formatDate } from '../utils';
+
+import ArticlePreview from './articlePreview';
 
 import styles from './dashboard.module.scss';
 
@@ -18,28 +19,11 @@ const Dashboard = ({ articles, tags = [] }: DashboardProps) => {
         <h2>Недавно добавленное</h2>
         {articles
           ? articles.map((article) => {
-              const { id, title, description, date } = article;
-
               return (
-                <div key={id} className={styles.articlePreview}>
-                  <Link href={`/blog/${id}`}>
-                    <h3 className={styles.title}>{title}</h3>
-                    <span className={styles.subtitle}>{formatDate(date)}</span>
-                    <p>{description}</p>
-                    <span>Читать</span>
-                    <svg
-                      className={styles.arrow}
-                      focusable="false"
-                      aria-hidden="true"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
-                    </svg>
-                  </Link>
-                </div>
+                <ArticlePreview
+                  className={styles.articlePreview}
+                  article={article}
+                />
               );
             })
           : 'Что-то пошло не так'}
@@ -49,7 +33,11 @@ const Dashboard = ({ articles, tags = [] }: DashboardProps) => {
         {tags.length
           ? tags.map((tag) => {
               return (
-                <Link key={tag} className={styles.tag} href={`/blog?tag=${tag}`}>
+                <Link
+                  key={tag}
+                  className={styles.tag}
+                  href={`/blog?tag=${tag}`}
+                >
                   {tag}
                 </Link>
               );

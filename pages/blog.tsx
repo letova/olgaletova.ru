@@ -5,9 +5,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Layout from '../components/layout';
+import ArticlePreview from '../components/articlePreview';
 
+import { getUniqTags } from '../utils';
 import { getBlogArticles } from '../server';
-import { formatDate, getUniqTags } from '../utils';
 
 import styles from '../styles/blog.module.scss';
 
@@ -49,7 +50,9 @@ const BlogPage = ({ articles }) => {
                 return (
                   <Link
                     key={tag}
-                    className={clsx(styles.tag, { [styles['tag--active']]: isActive })}
+                    className={clsx(styles.tag, {
+                      [styles['tag--active']]: isActive,
+                    })}
                     href={isActive ? '/blog' : `/blog?tag=${tag}`}
                   >
                     {tag}
@@ -58,14 +61,14 @@ const BlogPage = ({ articles }) => {
               })
             : 'Пока нет категорий'}
         </div>
-        {filteredArticles?.map(({ id, date, title, description }) => (
-          <div key={id} className={styles.card}>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <span>{formatDate(date)}</span>
-            <Link href={`/blog/${id}`}>Читать</Link>
-          </div>
-        ))}
+        {filteredArticles?.map((article) => {
+          return (
+            <ArticlePreview
+              className={styles.articlePreview}
+              article={article}
+            />
+          );
+        })}
       </div>
     </Layout>
   );

@@ -1,0 +1,48 @@
+.container {
+  .subtitle {
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: normal;
+  }
+
+  a {
+    font-weight: bold;
+    color: black;
+  }
+
+  p {
+    margin: 18px 0;
+  }
+}
+
+.container:hover {
+  .title {
+    color: #9932cc;
+  }
+
+  .arrow {
+    visibility: visible;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: dimgray;
+}
+
+.arrow {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  vertical-align: middle;
+  visibility: hidden;
+  background-color: #9932cc;
+  -webkit-mask-image: url(/icons/arrow.svg);
+  mask-image: url(/icons/arrow.svg);
+}

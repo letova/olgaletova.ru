@@ -10,8 +10,11 @@ const Article = ({ article }) => {
   return (
     <article className={styles.container}>
       <h1>{title}</h1>
-      <span className={styles.date}>{formatDate(date)}</span>
-      <div className={styles.contentContainer} dangerouslySetInnerHTML={{ __html: content }} />
+      <span className={styles.subtitle}>{formatDate(date)}</span>
+      <div
+        className={styles.contentContainer}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </article>
   );
 };
