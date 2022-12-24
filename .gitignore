@@ -3,3 +3,6 @@
 
 # development
 /.next
+
+# export
+/out
