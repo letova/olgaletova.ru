@@ -1,3 +1,24 @@
+@font-face {
+  font-family: 'Fragment Mono';
+  font-weight: 400;
+  font-style: normal;
+  src: url('../assets/fonts/FragmentMono-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-weight: 700;
+  font-style: normal;
+  src: url('../assets/fonts/Lora-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-weight: 400;
+  font-style: normal;
+  src: url('../assets/fonts/Lora-Regular.ttf');
+}
+
 html,
 body {
   padding: 0;
@@ -17,6 +38,18 @@ body {
 
 a {
   text-decoration: none;
+}
+
+p {
+  font-family: 'Lora', Georgia, 'Times New Roman', Times, serif;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.1px;
+}
+
+code {
+  font-family: 'Fragment Mono', Menlo, Monaco, monospace;
+  letter-spacing: 0.1px;
 }
 
 ul {
