@@ -15,7 +15,17 @@ const Dashboard = ({ articles, tags = [] }: DashboardProps) => {
   return (
     <div className={styles.container}>
       <div>
-        <div className={styles.header} />
+        <div className={styles.header}>
+          <h1>
+            Невозможно жить лучше, чем проводя жизнь в стремлении стать
+            совершеннее <span>- Сократ</span>
+            <span className={styles.headerBox}>
+              Стремление к совершенству делает некоторых совершенно невыносимыми
+              <span> - Перл Бак</span>
+            </span>
+          </h1>
+          <img src="/images/icons.png" width="310" />
+        </div>
         <h2>Недавно добавленное</h2>
         {articles
           ? articles.map((article) => {
