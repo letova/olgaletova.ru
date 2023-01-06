@@ -31,6 +31,34 @@
     color: #353535;
   }
 
+  li {
+    display: flex;
+    align-items: baseline;
+
+    p {
+      margin: 12px 0;
+    }
+  }
+
+  li::before {
+    content: '';
+
+    flex-shrink: 0;
+
+    display: inline-block;
+    padding-right: 12px;
+    width: 18px;
+    height: 18px;
+    background-color: #9932cc;
+    background-repeat: no-repeat;
+    -webkit-mask-image: url(/icons/arrow.svg);
+    mask-image: url(/icons/arrow.svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: 0 3px;
+    mask-position: 0 3px;
+  }
+
   p {
     font-size: 18px;
     color: #353535;
