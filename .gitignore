@@ -1,6 +1,9 @@
 # dependencies
 /node_modules
 
+# drafts
+_drafts
+
 # development
 /.next
 
