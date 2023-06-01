@@ -32,8 +32,7 @@
   }
 
   li {
-    display: flex;
-    align-items: baseline;
+    position: relative;
 
     p {
       margin: 12px 0;
@@ -43,12 +42,15 @@
   li::before {
     content: '';
 
-    flex-shrink: 0;
+    position: absolute;
+    top: 2px;
+    left: -24px;
 
     display: inline-block;
     padding-right: 12px;
     width: 18px;
     height: 18px;
+
     background-color: #9932cc;
     background-repeat: no-repeat;
     -webkit-mask-image: url(/icons/arrow.svg);
