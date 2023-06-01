@@ -153,7 +153,7 @@ export const PlayerProvider = ({ children }: PlayerProviderProps) => {
    случае, когда `currentTrackId` и `setIsPlaying` используются отдельно друг от
    друга.
 
-### Как можно улучшить?
+### Какие еще варианты?
 
 Если у вас ситуация чуть проще и `action` всего один - можно использовать
 самописный
@@ -205,6 +205,53 @@ const Component1 = () => {
 }
 ```
 
+Также можно воспользоваться `useReducer`:
+
+```tsx
+import { createContext, useReducer } from 'react';
+
+export let dispatch = () => {};
+
+const reducer = (state, action) => {
+  if (action.type === 'set_current_track') {
+    return {
+      ...state,
+      currentTrackId: action.payload,
+    };
+  }
+
+  if (action.type === 'set_is_playing') {
+    return {
+      ...state,
+      isPlaying: action.payload,
+    };
+  }
+
+  throw Error('Unknown action.');
+};
+
+export const PlayerProvider = ({ children }: PlayerProviderProps) => {
+  const [state, dispathFn] = useReducer(reducer, {
+    currentTrackId: undefined,
+    isPlaying: false,
+  });
+
+  dispatch = (action) => {
+    /**
+     * делаем что-нибудь... например:
+     * if (action.type === 'set_is_playing') {
+     *   logger.log(`Update Current track ID with value ${id}`);
+     * }
+     */
+    dispathFn(action);
+  };
+
+  return (
+    <PlayerContext.Provider value={state}>{children}</PlayerContext.Provider>
+  );
+};
+```
+
 ## Использовать Context API или нет?
 
 Подводя итог по приведенному примеру, можно сказать следующее:
@@ -218,7 +265,7 @@ const Component1 = () => {
 менеджера, необходимо учитывать сложность приложения и уровень опыта
 разработчиков.
 
-Итак, нужно не забывать, что:
+Также, нужно не забывать, что:
 
 1. Вы можете добавить контекст к любой части вашего приложения, не обязательно
    делать его глобальным
@@ -230,7 +277,7 @@ const Component1 = () => {
 3. Передача большого количества данных, делает код менее понятным и усложняет
    его сопровождение
 
-Также важно отметить, что необходимо различать категории данных и применять
-соответствующие подходы к их управлению. Например данные, получаемые с сервера,
-являются серверным состоянием и лучше использовать специализированные
+В дополнение, важно отметить, что необходимо различать категории данных и
+применять соответствующие подходы к их управлению. Например данные, получаемые с
+сервера, являются серверным состоянием и лучше использовать специализированные
 инструменты для работы с ними, такие как **React-Query** или **Apollo Client**.
